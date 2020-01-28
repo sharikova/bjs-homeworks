@@ -32,10 +32,10 @@ function calculateAverageRating(){
 function getAverageMark(marks) {
     let marksSum = 0;
     if (marks.length > 5) {
-        marks.slice(0, 5)
+        marks.splice(0, 5)
         console.log("Вы ввели слишком много оценок, оценки после 5ой не будут учитываться");
     }
-    for (let i = 0; i <= marks.length - 1; i++) {
+    for (let i = 0; i < marks.length; i++) {
         marksSum = marksSum + marks[i];
     }
         return marksSum/ marks.length;
