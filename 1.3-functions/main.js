@@ -45,47 +45,40 @@ showSolutionsMessage(7, 20, -3);
 showSolutionsMessage(2, 4, 2);
 
 // вторая задача
-
-let data = {
-  algebra: [2, 4, 5, 2, 3, 4],
-  geometry: [2, 4, 5],
-  russian: [3, 3, 4, 5],
-  physics: [5, 5, 1],
-  music: [5, 5],
-  english: [4, 4, 3],
-  poetry: [5, 3, 4],
-  chemistry: [4],
-  french: [4, 4, 5]
-};
-let averageLesson = 0;
-let allAverageScore = {};
-
 function getAverageScore(data) {
-  for (let lesson in data) {
-    let sumMarks = 0;
-    for (let mark of data[lesson]) {
-      sumMarks += mark;
-      averageLesson = sumMarks / data[lesson].length;
-    }
-    allAverageScore[lesson] = averageLesson;
-  }
-  return allAverageScore;
-}
 
-getAverageScore(data);
+	function getAverageMark(marks) {
+	    let sumMarks = 0;
+	    for (let i = 0; i < marks.length; i++) {
+	    	sumMarks += marks[i];
+	    };
+	    return sumMarks/marks.length;
+	};
 
-let sumAllAverage = 0;
-let average = 0;
-function getAverageScoreAllLessons(allAverageScore) {
-  let sumLessons = 0;
-  for (let key in allAverageScore) {
-    sumLessons ++;
-    sumAllAverage += allAverageScore[key];
-    average = sumAllAverage / sumLessons;
-  }
-  allAverageScore.average = average;
-  return allAverageScore;
-}
+	let result = {};
+	let allAverageMarks = [];
 
-getAverageScoreAllLessons(allAverageScore);
-console.log(allAverageScore);
+	for (let lesson in data) {
+		let averageScores = getAverageMark(data[lesson]);
+	  	result[lesson] = averageScores;
+	  	allAverageMarks.push(averageScores);
+	};
+
+	result.average = getAverageMark(allAverageMarks);
+
+	return result;
+};
+
+let allMarks = {
+algebra: [2, 4, 5, 2, 3, 4],
+geometry: [2, 4, 5],
+russian: [3, 3, 4, 5],
+physics: [5, 5],
+music: [2, 2, 6],
+english: [4, 4, 3],
+poetry: [5, 3, 4],
+chemistry: [2],
+french: [4, 4]
+};
+
+console.log(getAverageScore(allMarks));
